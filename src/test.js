@@ -1,7 +1,6 @@
-// 不是/ ./ ../开头的，我们认为你是来源自node_modules里面的
+// 不是/ ./ ../开头的，认为你是来源自node_modules里面的
 // 我们就要去node_module里找
 // vite原理，  拦截网络请求
-//  待会我们去看下vite的源码，看下热更新的实现
 import { createApp } from 'vue'
 // console.log(createApp)
 import Test from './Test.vue'

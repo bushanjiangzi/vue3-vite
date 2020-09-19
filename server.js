@@ -73,17 +73,16 @@ app.use(ctx => {
       // js内容
       ctx.type = 'application/javascript'
       ctx.body = `
-${rewriteImport(descriptor.script.content.replace('export default ','const __script = '))}
-import {render as __render} from "${url}?type=template"
-__script.render = __render
-export default __script
+        ${rewriteImport(descriptor.script.content.replace('export default ','const __script = '))}
+        import {render as __render} from "${url}?type=template"
+        __script.render = __render
+        export default __script
       `
     }else if(query.type=="template"){
       // 解析我们的template 编程render函数
       const template = descriptor.template
       const render = compilerDom.compile(template.content, {mode:"module"}).code
       ctx.type = 'application/javascript'
-      
       ctx.body = rewriteImport(render)
     }
   }
